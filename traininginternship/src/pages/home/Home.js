@@ -1,5 +1,6 @@
 import React from "react";
 import fakeData from '../../fakeData.json';
+import {Link} from "react-router-dom";
 
 export const Home = (props) => {
 
@@ -30,7 +31,7 @@ const Lesson = (props) => {
         <a>
             {`${value.days} days  at ${value.place} price ->  ${value.price}€` }
         </a>
-            {' '}<button> Order now ! </button>
+            {' '}<button><Link to={`/details/${value.id}`}> Order now ! </Link></button>
             <p>
                 {` langage ->  ${value.language}`}
             </p>

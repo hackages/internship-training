@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import fakeData from '../../fakeData';
+import {Link} from "react-router-dom";
 
 export const Details = (props) => {
-
     return (
         <>
             <h1>Details</h1>
@@ -19,7 +19,14 @@ export const Details = (props) => {
                 </p>
             </section>
 
-            <button> Pay </button>
+            <button>
+                <Link to={{
+                pathname: `/payment/`,
+                props: {
+                    price: props.price,
+                    title: props.title
+                }}}> Buy  </Link>
+            </button>
 
         </>
     );
