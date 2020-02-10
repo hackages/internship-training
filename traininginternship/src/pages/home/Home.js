@@ -4,8 +4,8 @@ import {Link} from "react-router-dom";
 
 export const Home = (props) => {
 
-    const listless = fakeData.map((
-        lesson) => <Lesson key={lesson.title} value={lesson}/>);
+    const listless = fakeData.map(
+        (lesson) => <Lesson key={lesson.title} value={lesson}/>);
 
     return (
         <>
@@ -20,7 +20,7 @@ export const Home = (props) => {
     );
 };
 
-const Lesson = (props) => {
+export const Lesson = (props) => {
     const {value} = props;
 
     return (

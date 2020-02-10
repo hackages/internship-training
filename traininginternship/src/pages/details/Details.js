@@ -3,31 +3,41 @@ import fakeData from '../../fakeData';
 import {Link} from "react-router-dom";
 
 export const Details = (props) => {
+
+    const id = props.match.params.id;
+
+    let product = fakeData.find(
+        (product) => product.id === Number(id)
+    );
+
+
     return (
-        <>
+        <div>
             <h1>Details</h1>
-            Title : {props.title}
-            Date : {props.date}
-            days : {props.days}
-            Price : {props.price} / days
-            Language : {props.language}
+            <p>Title : {product.title}</p>
+
+            <p>Date : {product.date}</p>
+            <p>days : {product.days}</p>
+            <p>Price : {product.price + ' €'} / day </p>
+            <p>Language : {product.language}</p>
 
             <section>
                 <h2> Description </h2>
                 <p>
-                    {props.description}
+                    {product.description}
                 </p>
             </section>
 
             <button>
                 <Link to={{
-                pathname: `/payment/`,
-                props: {
-                    price: props.price,
-                    title: props.title
-                }}}> Buy  </Link>
+                    pathname: `/payment`,
+                    product: {
+                        price: product.price, // to recup in the payment component
+                        title: product.title // to recup in the payment component
+                    }
+                }}> Buy </Link>
             </button>
 
-        </>
+        </div>
     );
 };
