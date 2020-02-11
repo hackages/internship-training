@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Formik } from 'formik';
 import { useHistory } from "react-router-dom";
 import { SnackbarContext } from "../../App";
+import Button from "@material-ui/core/Button";
+import {red} from "@material-ui/core/colors";
 import fakeData from '../../fakeData.json';
 
 export const Payment = (props) => {
@@ -24,9 +26,15 @@ export const Payment = (props) => {
 
 const PayementForm = () => {
 
+<<<<<<< HEAD
   const spanStyle = {
     color: 'red'
   };
+=======
+    const spanStyle = {
+        color: 'red'
+    };
+>>>>>>> ee61e9b4a16d12181235fd68ce0dc608d276d1be
 
   let { showSnackBar } = useContext(SnackbarContext);
   const history = useHistory();
@@ -83,25 +91,27 @@ const PayementForm = () => {
         }) => (
             <form onSubmit={handleSubmit}>
 
-              <input
+              <p>Name <input
                 type="text"
                 name="firstname"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.firstname}
               />
-              {errors.firstname && touched.firstname && errors.firstname}
+                <span style={spanStyle}>{errors.firstname && touched.firstname && errors.firstname}</span>
+                <br/></p>
 
-              <input
+              <p>Surname <input
                 type="text"
                 name="lastname"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.lastname}
               />
-              {errors.lastname && touched.lastname && errors.lastname}
+                <span style={spanStyle}>{errors.lastname && touched.lastname && errors.lastname}</span>
+                <br/></p>
 
-              <input
+             <p>Your mail <input
                 type="email"
                 name="email"
                 onChange={handleChange}
@@ -109,10 +119,14 @@ const PayementForm = () => {
                 value={values.email}
               />
               <span style={spanStyle}>{errors.email && touched.email && errors.email}</span>
+<<<<<<< HEAD
+=======
+                 <br/></p>
+>>>>>>> ee61e9b4a16d12181235fd68ce0dc608d276d1be
 
-              <button type="submit" disabled={(errors.firstname && errors.lastname && errors.email) ? true : false}>
+              <p><Button  size="small" variant="outlined" color="primary" type="submit" disabled={(errors.firstname && errors.lastname && errors.email) ? true : false}>
                 Purchase
-              </button>
+              </Button></p>
 
             </form>
           )}
@@ -120,4 +134,4 @@ const PayementForm = () => {
     </div>
   );
 
-}
+};
