@@ -114,5 +114,3 @@ const PayementForm = () => {
     );
 };
 
-
-
