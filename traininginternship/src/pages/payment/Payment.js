@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { Formik } from 'formik';
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { SnackbarContext } from "../../App";
 
 export const Payment = () => {
@@ -25,11 +26,11 @@ export const Payment = () => {
 
 const PayementForm = () => {
 
-  let snackbarContext = useContext(SnackbarContext);
+  let { showSnackBar } = useContext(SnackbarContext);
+  const history = useHistory();
 
   return (
     <div>
-
       <Formik
 
         initialValues={{ firstname: '', lastname: '', email: '' }}
@@ -62,12 +63,9 @@ const PayementForm = () => {
         }}
 
         onSubmit={(values, { setSubmitting }) => {
-          // setTimeout(() => {
-          //   alert(JSON.stringify(values, null, 2));
-          //   setSubmitting(false);
-          // }, 400);
 
-          snackbarContext = { "show": true, "text": "Validation ok" };
+          showSnackBar({ text: "Validation ok" });
+          history.push("/")
 
         }}
 
@@ -111,7 +109,7 @@ const PayementForm = () => {
               {errors.email && touched.email && errors.email}
 
               <button type="submit" disabled={(errors.firstname && errors.lastname && errors.email) ? true : false}>
-                <Link to="/"> Purchase </Link>
+                Purchase
               </button>
 
             </form>
