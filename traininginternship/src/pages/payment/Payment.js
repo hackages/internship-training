@@ -1,108 +1,123 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { Formik } from 'formik';
 import { Link } from "react-router-dom";
+import { SnackbarContext } from "../../App";
 
 export const Payment = () => {
 
-  const pay = localStorage.getItem('payp');
-  const tit = localStorage.getItem('payt');
+  const product = JSON.parse(localStorage.getItem('product'));
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem("product");
+    };
+  }, [])
 
   return (
-      <div>
-          <h1>{' The order is about : '} {tit} </h1>
-          <h3>{pay + ' €'}</h3>
+    <div>
+      <h1>{' The order is about : '} {product.title} </h1>
+      <h3>{product.price + ' €'}</h3>
 
-          <PayementForm></PayementForm>
-      </div>
+      <PayementForm></PayementForm>
+    </div>
   );
 };
 
-const PayementForm = () => (
-  <div>
+const PayementForm = () => {
 
-    <Formik
+  let snackbarContext = useContext(SnackbarContext);
 
-      initialValues={{ firstname: '', lastname: '', email: '' }}
+  return (
+    <div>
 
-      validate={values => {
+      <Formik
 
-        const errors = {};
+        initialValues={{ firstname: '', lastname: '', email: '' }}
 
-        if (!values.firstname) {
-          errors.firstname = 'Required';
-        } else if (values.firstname.length <= 2) {
-          errors.firstname = "At least 3 characters are needed";
-        }
+        validate={values => {
 
-        if (!values.lastname) {
-          errors.lastname = 'Required';
-        } else if (values.lastname.length <= 2) {
-          errors.lastname = "At least 3 characters are needed";
-        }
+          const errors = {};
 
-        if (!values.email) {
-          errors.email = 'Required';
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = 'Invalid email address';
-        }
+          if (!values.firstname) {
+            errors.firstname = 'Required';
+          } else if (values.firstname.length <= 2) {
+            errors.firstname = "At least 3 characters are needed";
+          }
 
-        return errors;
-      }}
+          if (!values.lastname) {
+            errors.lastname = 'Required';
+          } else if (values.lastname.length <= 2) {
+            errors.lastname = "At least 3 characters are needed";
+          }
 
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
+          if (!values.email) {
+            errors.email = 'Required';
+          } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+          ) {
+            errors.email = 'Invalid email address';
+          }
 
-    >
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit
+          return errors;
+        }}
 
-      }) => (
-          <form onSubmit={handleSubmit}>
+        onSubmit={(values, { setSubmitting }) => {
+          // setTimeout(() => {
+          //   alert(JSON.stringify(values, null, 2));
+          //   setSubmitting(false);
+          // }, 400);
 
-            <input
-              type="text"
-              name="firstname"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.firstname}
-            />
-            {errors.firstname && touched.firstname && errors.firstname}
+          snackbarContext = { "show": true, "text": "Validation ok" };
 
-            <input
-              type="text"
-              name="lastname"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.lastname}
-            />
-            {errors.lastname && touched.lastname && errors.lastname}
+        }}
 
-            <input
-              type="email"
-              name="email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
-            />
-            {errors.email && touched.email && errors.email}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit
 
-            <button type="submit" disabled={errors.firstname || errors.lastname || errors.email }>
-            <Link to="/"> Purchase </Link>
-            </button>
+        }) => (
+            <form onSubmit={handleSubmit}>
 
-          </form>
-        )}
-    </Formik>
-  </div>
-);
+              <input
+                type="text"
+                name="firstname"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.firstname}
+              />
+              {errors.firstname && touched.firstname && errors.firstname}
+
+              <input
+                type="text"
+                name="lastname"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.lastname}
+              />
+              {errors.lastname && touched.lastname && errors.lastname}
+
+              <input
+                type="email"
+                name="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+              />
+              {errors.email && touched.email && errors.email}
+
+              <button type="submit" disabled={(errors.firstname && touched.firstname) || (errors.lastname && touched.lastname) || (errors.email && touched.email)}>
+                <Link to="/"> Purchase </Link>
+              </button>
+
+            </form>
+          )}
+      </Formik>
+    </div>
+  );
+
+}
