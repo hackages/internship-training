@@ -51,12 +51,12 @@ const PayementForm = () => (
         return errors;
       }}
 
-      // onSubmit={(values, { setSubmitting }) => {
-      //   setTimeout(() => {
-      //     alert(JSON.stringify(values, null, 2));
-      //     setSubmitting(false);
-      //   }, 400);
-      // }}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
+      }}
 
     >
       {({
@@ -98,7 +98,7 @@ const PayementForm = () => (
             {errors.email && touched.email && errors.email}
 
             <button type="submit" disabled={errors.firstname || errors.lastname || errors.email }>
-            <Link to={`/`}></Link> Purchase
+            <Link to="/"> Purchase </Link>
             </button>
 
           </form>
