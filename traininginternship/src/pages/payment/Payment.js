@@ -110,7 +110,7 @@ const PayementForm = () => {
               />
               {errors.email && touched.email && errors.email}
 
-              <button type="submit" disabled={(errors.firstname && touched.firstname) || (errors.lastname && touched.lastname) || (errors.email && touched.email)}>
+              <button type="submit" disabled={(errors.firstname && errors.lastname && errors.email) ? true : false}>
                 <Link to="/"> Purchase </Link>
               </button>
 

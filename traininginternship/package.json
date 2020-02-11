@@ -4,10 +4,15 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.2",
+<<<<<<< HEAD
+=======
+    "@material-ui/lab": "^4.0.0-alpha.42",
+>>>>>>> 8ffd22e0881ef0bec5ebb81afbc17008cb1b3536
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "formik": "^2.1.4",
+    "json-server": "^0.15.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "latest",

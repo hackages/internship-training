@@ -14,7 +14,7 @@ import { Payment } from "./pages/payment/Payment";
 export const SnackbarContext = React.createContext({});
 
 function App() {
-
+    
     return (
         <>
             <SnackbarContext.Provider value={{"show": false, "text": ""}}>
