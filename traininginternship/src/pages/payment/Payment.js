@@ -1,18 +1,16 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Formik } from 'formik';
-import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { SnackbarContext } from "../../App";
+import fakeData from '../../fakeData.json';
 
-export const Payment = () => {
+export const Payment = (props) => {
 
-  const product = JSON.parse(localStorage.getItem('product'));
+  const id = props.match.params.id;
 
-  useEffect(() => {
-    return () => {
-      localStorage.removeItem("product");
-    };
-  }, [])
+    let product = fakeData.find(
+        (product) => product.id === Number(id)
+    );
 
   return (
     <div>

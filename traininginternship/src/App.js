@@ -30,7 +30,7 @@ function App() {
                     <Switch>
                         <Route exact path={'/'} component={Home} />
                         <Route path={'/details/:id'} component={Details} />
-                        <Route path={'/payment'} component={Payment} />
+                        <Route path={'/payment/:id'} component={Payment} />
                         <Route path={'**'} component={Page404} />
                     </Switch>
                 </BrowserRouter>

@@ -36,7 +36,7 @@ export const Lesson = (props) => {
                 <a>
                     {`${value.days} days  at ${value.place} price ->  ${value.price}€`}
                 </a>
-                {' '}<button><Link to={`/details/${value.id}`}> Order now ! </Link></button>
+                <button><Link to={`/details/${value.id}`}> Order now ! </Link></button>
                 <p>
                     {` langage ->  ${value.language}`}
                 </p>

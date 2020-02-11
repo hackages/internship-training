@@ -29,10 +29,7 @@ export const Details = (props) => {
             </section>
 
             <button>
-                <Link to={{
-                    pathname: `/payment`
-
-                }}> Buy </Link>
+                <Link to={`/payment/${id}`}> Buy </Link>
             </button>
 
         </div>
