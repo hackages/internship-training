@@ -1,5 +1,5 @@
-import React, {useEffect} from "react";
-import fakeData from '../../fakeData';
+import React from "react";
+import fakeData from '../../fakeData.json';
 import {Link} from "react-router-dom";
 
 export const Details = (props) => {
@@ -10,14 +10,12 @@ export const Details = (props) => {
         (product) => product.id === Number(id)
     );
 
-    localStorage.setItem('payp', product.price);
-    localStorage.setItem('payt', product.title);
+    localStorage.setItem('product', JSON.stringify({ "price": product.price, "title": product.title }));
 
     return (
         <div>
             <h1>Details</h1>
             <p>Title : {product.title}</p>
-
             <p>Date : {product.date}</p>
             <p>days : {product.days}</p>
             <p>Price : {product.price + ' €'} / day </p>
