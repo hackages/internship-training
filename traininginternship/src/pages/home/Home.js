@@ -2,10 +2,15 @@ import React from "react";
 import fakeData from '../../fakeData.json';
 import {Link} from "react-router-dom";
 
+
+/**
+ *
+ * Challenge 1 : faire la requete de manière asynchrone avec un petit serveur de base --> Voir JSON server ( npm )
+ */
 export const Home = (props) => {
 
-    const listless = fakeData.map((
-        lesson) => <Lesson key={lesson.title} value={lesson}/>);
+    const listless = fakeData.map(
+        (lesson) => <Lesson key={lesson.title} value={lesson}/>);
 
     return (
         <>
@@ -20,7 +25,7 @@ export const Home = (props) => {
     );
 };
 
-const Lesson = (props) => {
+export const Lesson = (props) => {
     const {value} = props;
 
     return (

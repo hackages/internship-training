@@ -3,10 +3,17 @@ import { Formik } from 'formik';
 import { Link } from "react-router-dom";
 
 export const Payment = () => {
+
+  const pay = localStorage.getItem('payp');
+  const tit = localStorage.getItem('payt');
+
   return (
-    <div>
-      <PayementForm></PayementForm>
-    </div>
+      <div>
+          <h1>{' The order is about : '} {tit} </h1>
+          <h3>{pay + ' €'}</h3>
+
+          <PayementForm></PayementForm>
+      </div>
   );
 };
 

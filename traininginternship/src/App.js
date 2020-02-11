@@ -23,15 +23,6 @@ function App() {
         </BrowserRouter>
     );
 }
-/**const Aboutid = (props) => {
-    const id = props.match.params.id;
-    return (
-        <div>
-            <h3>{id}</h3>
-        </div>
-    );
-}; **/
-
 
 
 export default App;
