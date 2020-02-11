@@ -3,6 +3,12 @@ import fakeData from '../../fakeData';
 import {Link} from "react-router-dom";
 
 export const Details = (props) => {
+    const productId = props.match.params.id;
+
+    console.log(productId);
+    console.log(fakeData);
+    console.log(fakeData.find(test => test.id === Number(productId)));
+
     return (
         <>
             <h1>Details</h1>
