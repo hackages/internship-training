@@ -13,6 +13,10 @@ import {
 import {Payment} from "./pages/payment/Payment";
 
 function App() {
+
+
+
+
     return (
         <BrowserRouter>
             <Switch>
