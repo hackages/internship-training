@@ -30,10 +30,7 @@ export const Details = (props) => {
             </section>
 
             <Button variant="outlined" color="primary"  >
-                <Link to={{
-                    pathname: `/payment`
-
-                }}> Buy </Link>
+                <Link to={`/payment/${id}`}> Buy </Link>
             </Button>
 
         </div>
