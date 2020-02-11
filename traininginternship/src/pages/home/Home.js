@@ -1,6 +1,7 @@
 import React from "react";
 import fakeData from '../../fakeData.json';
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 
 /**
@@ -36,7 +37,7 @@ export const Lesson = (props) => {
                 <a>
                     {`${value.days} days  at ${value.place} price ->  ${value.price}€`}
                 </a>
-                {' '}<button><Link to={`/details/${value.id}`}> Order now ! </Link></button>
+                {' '}<Button size="small" variant="outlined" color="primary"><Link to={`/details/${value.id}`}> Order now ! </Link></Button>
                 <p>
                     {` langage ->  ${value.language}`}
                 </p>

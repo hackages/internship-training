@@ -1,6 +1,7 @@
 import React from "react";
 import fakeData from '../../fakeData.json';
 import {Link} from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 export const Details = (props) => {
 
@@ -28,12 +29,12 @@ export const Details = (props) => {
                 </p>
             </section>
 
-            <button>
+            <Button variant="outlined" color="primary"  >
                 <Link to={{
                     pathname: `/payment`
 
                 }}> Buy </Link>
-            </button>
+            </Button>
 
         </div>
     );

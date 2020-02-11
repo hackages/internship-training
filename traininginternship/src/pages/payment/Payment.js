@@ -3,6 +3,8 @@ import { Formik } from 'formik';
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { SnackbarContext } from "../../App";
+import Button from "@material-ui/core/Button";
+import {red} from "@material-ui/core/colors";
 
 export const Payment = () => {
 
@@ -25,6 +27,10 @@ export const Payment = () => {
 };
 
 const PayementForm = () => {
+
+    const spanStyle = {
+        color: 'red'
+    };
 
   let { showSnackBar } = useContext(SnackbarContext);
   const history = useHistory();
@@ -81,36 +87,39 @@ const PayementForm = () => {
         }) => (
             <form onSubmit={handleSubmit}>
 
-              <input
+              <p>Name <input
                 type="text"
                 name="firstname"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.firstname}
               />
-              {errors.firstname && touched.firstname && errors.firstname}
+                <span style={spanStyle}>{errors.firstname && touched.firstname && errors.firstname}</span>
+                <br/></p>
 
-              <input
+              <p>Surname <input
                 type="text"
                 name="lastname"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.lastname}
               />
-              {errors.lastname && touched.lastname && errors.lastname}
+                <span style={spanStyle}>{errors.lastname && touched.lastname && errors.lastname}</span>
+                <br/></p>
 
-              <input
+             <p>Your mail <input
                 type="email"
                 name="email"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
               />
-              {errors.email && touched.email && errors.email}
+              <span style={spanStyle}>{errors.email && touched.email && errors.email}</span>
+                 <br/></p>
 
-              <button type="submit" disabled={(errors.firstname && errors.lastname && errors.email) ? true : false}>
+              <p><Button  size="small" variant="outlined" color="primary" type="submit" disabled={(errors.firstname && errors.lastname && errors.email) ? true : false}>
                 Purchase
-              </button>
+              </Button></p>
 
             </form>
           )}
