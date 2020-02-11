@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import { SnackbarContext } from "../App";
 

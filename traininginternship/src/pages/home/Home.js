@@ -1,6 +1,12 @@
 import React from "react";
 import fakeData from '../../fakeData.json';
 import { Link } from "react-router-dom";
+import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
 
 
 /**
@@ -16,9 +22,10 @@ export const Home = (props) => {
     return (
         <>
             <h1>Trainings offered by Hackages</h1>
-            <ul>
+
+            <List>
                 {listless}
-            </ul>
+            </List>
 
         </>
     );
@@ -29,18 +36,26 @@ export const Lesson = (props) => {
 
     return (
         <>
-            <li>
-                <h4>
-                    {`${value.date} ${value.title} `}
-                </h4>
-                <a>
-                    {`${value.days} days  at ${value.place} price ->  ${value.price}€`}
-                </a>
-                <button><Link to={`/details/${value.id}`}> Order now ! </Link></button>
-                <p>
-                    {` langage ->  ${value.language}`}
-                </p>
-            </li>
+
+            <ListItem>
+                <Card variant="outlined">
+                    <CardContent>
+                        <h4>
+                            {`${value.date} ${value.title} `}
+                        </h4>
+                        <p>
+                            {`${value.days} days  at ${value.place} price ->  ${value.price}€`}
+                        </p>
+
+                        <p>
+                            {` langage ->  ${value.language}`}
+                        </p>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small"><Link to={`/details/${value.id}`}> Order now ! </Link></Button>
+                    </CardActions>
+                </Card>
+            </ListItem>
         </>
     );
 };

@@ -8,9 +8,9 @@ export const Payment = (props) => {
 
   const id = props.match.params.id;
 
-    let product = fakeData.find(
-        (product) => product.id === Number(id)
-    );
+  let product = fakeData.find(
+    (product) => product.id === Number(id)
+  );
 
   return (
     <div>
@@ -23,6 +23,10 @@ export const Payment = (props) => {
 };
 
 const PayementForm = () => {
+
+  const spanStyle = {
+    color: 'red'
+  };
 
   let { showSnackBar } = useContext(SnackbarContext);
   const history = useHistory();
@@ -104,7 +108,7 @@ const PayementForm = () => {
                 onBlur={handleBlur}
                 value={values.email}
               />
-              {errors.email && touched.email && errors.email}
+              <span style={spanStyle}>{errors.email && touched.email && errors.email}</span>
 
               <button type="submit" disabled={(errors.firstname && errors.lastname && errors.email) ? true : false}>
                 Purchase
