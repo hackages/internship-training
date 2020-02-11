@@ -10,6 +10,8 @@ export const Details = (props) => {
         (product) => product.id === Number(id)
     );
 
+    localStorage.setItem('payp', product.price);
+    localStorage.setItem('payt', product.title);
 
     return (
         <div>
@@ -30,11 +32,8 @@ export const Details = (props) => {
 
             <button>
                 <Link to={{
-                    pathname: `/payment`,
-                    product: {
-                        price: product.price, // to recup in the payment component
-                        title: product.title // to recup in the payment component
-                    }
+                    pathname: `/payment`
+
                 }}> Buy </Link>
             </button>
 

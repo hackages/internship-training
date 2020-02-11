@@ -1,18 +1,16 @@
-import React from "react";
-
+import React, {useEffect} from "react";
 
 
 export const Payment = (props) => {
 
-   console.log(props.location);
 
-    const product = props.location.product; // we need to persist the information with refresh
+    const pay = localStorage.getItem('payp');
+    const tit = localStorage.getItem('payt');
 
-
-  return (
-      <div>
-          <h1>{ ' The order is about : ' + product.title }</h1>
-          <h3>{product.price + ' €'}</h3>
-      </div>
-  );
+    return (
+        <div>
+            <h1>{' The order is about : '} {tit} </h1>
+            <h3>{pay + ' €'}</h3>
+        </div>
+    );
 };
