@@ -1,17 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Formik } from 'formik';
 import { useHistory } from "react-router-dom";
 import { SnackbarContext } from "../../App";
 import Button from "@material-ui/core/Button";
-import fakeData from '../../fakeData.json';
+import lesson from '../../core/services/lesson.service';
 
 export const Payment = (props) => {
 
+  const [product, setProduct] = useState({});
+
   const id = props.match.params.id;
 
-  let product = fakeData.find(
-    (product) => product.id === Number(id)
-  );
+  useEffect(() => {
+    lesson.getLesson(id).then(data => {
+      setProduct(data);
+    })
+  }, [id])
 
   return (
     <div>

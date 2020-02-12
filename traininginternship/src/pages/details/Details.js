@@ -1,17 +1,18 @@
-import React from "react";
-import fakeData from '../../fakeData.json';
+import React, { useEffect, useState } from "react";
+import lesson from '../../core/services/lesson.service';
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
 export const Details = (props) => {
+    const [product, setProduct] = useState({});
 
     const id = props.match.params.id;
 
-    let product = fakeData.find(
-        (product) => product.id === Number(id)
-    );
-
-    localStorage.setItem('product', JSON.stringify({ "price": product.price, "title": product.title }));
+    useEffect(() => {
+        lesson.getLesson(id).then(data => {
+            setProduct(data);
+        })
+    }, [id])
 
     return (
         <div>

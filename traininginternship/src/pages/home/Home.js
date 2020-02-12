@@ -1,5 +1,5 @@
-import React from "react";
-import fakeData from '../../fakeData.json';
+import React, { useState, useEffect } from "react";
+import lesson from '../../core/services/lesson.service';
 import { Link } from "react-router-dom";
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
@@ -15,8 +15,15 @@ import Button from '@material-ui/core/Button';
  */
 export const Home = (props) => {
 
+    const [products, setProducts] = useState([]);
 
-    const listless = fakeData.map(
+    useEffect(() => {
+        lesson.getLessons().then(data => {
+            setProducts(data);
+        })
+    }, [])
+
+    const listless = products.map(
         (lesson) => <Lesson key={lesson.title} value={lesson} />);
 
     return (
