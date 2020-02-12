@@ -7,6 +7,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import Loading from '../../shared/Loading';
 
 
 /**
@@ -15,27 +16,37 @@ import Button from '@material-ui/core/Button';
  */
 export const Home = (props) => {
 
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState({});
 
     useEffect(() => {
         lesson.getLessons().then(data => {
             setProducts(data);
         })
-    }, [])
+    }, []);
+    
+    if (products && products.activities) {
+        
+        const listless = products.activities.map(
+            (lesson) => <Lesson key={lesson.title} value={lesson} />);
 
-    const listless = products.map(
-        (lesson) => <Lesson key={lesson.title} value={lesson} />);
+        return (
+            <>
+                <h1>Trainings offered by Hackages</h1>
 
-    return (
-        <>
-            <h1>Trainings offered by Hackages</h1>
+                <List>
+                    {listless}
+                </List>
 
-            <List>
-                {listless}
-            </List>
+            </>
+        );
 
-        </>
-    );
+    } else {
+        return (
+            <>
+                <Loading></Loading>
+            </>
+        )
+    }
 };
 
 export const Lesson = (props) => {
@@ -48,14 +59,14 @@ export const Lesson = (props) => {
                 <Card variant="outlined">
                     <CardContent>
                         <h4>
-                            {`${value.date} ${value.title} `}
+                            {`${value.dates[0]} ${value.title} `}
                         </h4>
                         <p>
-                            {`${value.days} days  at ${value.place} price ->  ${value.price}€`}
+                            {`${value.dates.length} days  at ${value.location.country} - ${value.location.locality} price ->  ${value.price}€`}
                         </p>
 
                         <p>
-                            {` langage ->  ${value.language}`}
+                            {` langage ->  ${value.topics[0].name}`}
                         </p>
                     </CardContent>
                     <CardActions>

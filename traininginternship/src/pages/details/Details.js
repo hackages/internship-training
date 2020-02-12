@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import lesson from '../../core/services/lesson.service';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import Loading from '../../shared/Loading';
 
 export const Details = (props) => {
     const [product, setProduct] = useState({});
@@ -14,26 +15,35 @@ export const Details = (props) => {
         })
     }, [id])
 
-    return (
-        <div>
-            <h1>Details</h1>
-            <p>Title : {product.title}</p>
-            <p>Date : {product.date}</p>
-            <p>days : {product.days}</p>
-            <p>Price : {product.price + ' €'} / day </p>
-            <p>Language : {product.language}</p>
+    if (product && product.activity) {
 
-            <section>
-                <h2> Description </h2>
-                <p>
-                    {product.description}
-                </p>
-            </section>
+        return (
+            <div>
+                <h1>Details</h1>
+                <p>Title : {product.activity.title}</p>
+                <p>Date : {product.activity.dates[0]}</p>
+                <p>days : {product.activity.dates.length}</p>
+                <p>Price : {product.activity.price + ' €'} / day </p>
+                <p>Language : {product.activity.topics[0].name}</p>
 
-            <Button variant="outlined" color="primary"  >
-                <Link to={`/payment/${id}`}> Buy </Link>
-            </Button>
+                <section>
+                    <h2> Description </h2>
+                    <p>
+                        {product.activity.description}
+                    </p>
+                </section>
 
-        </div>
-    );
+                <Button variant="outlined" color="primary"  >
+                    <Link to={`/payment/${id}`}> Buy </Link>
+                </Button>
+
+            </div>
+        );
+    } else {
+        return (
+            <>
+                <Loading></Loading>
+            </>
+        )
+    }
 };
