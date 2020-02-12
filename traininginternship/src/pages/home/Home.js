@@ -9,12 +9,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Loading from '../../shared/Loading';
 
-
 /**
  *
  * Challenge 1 : faire la requete de manière asynchrone avec un petit serveur de base --> Voir JSON server ( npm )
  */
 export const Home = (props) => {
+    console.log(process.env);
+    console.log(process.env.REACT_APP_URL_BASE);
 
     const [products, setProducts] = useState({});
 

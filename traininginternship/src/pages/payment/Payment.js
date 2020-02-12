@@ -83,7 +83,7 @@ const PayementForm = (props) => {
         onSubmit={(values, { setSubmitting }) => {
 
           showSnackBar({ text: "Validation ok" });
-          window.location = `https://dev.payments.hackages.io/?id=${id}&redirectTo=https%3A%2F%2Fdev.community.hackages.io%2Factivity%2Fevent%2F${id}&email=${values.email}`;
+          window.location = `${process.env.REACT_APP_URL_BASE_PAYMENT}?id=${id}&redirectTo=https%3A%2F%2Fdev.community.hackages.io%2Factivity%2Fevent%2F${id}&email=${values.email}`;
 
         }}
 
