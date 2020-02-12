@@ -25,7 +25,7 @@ export const Payment = (props) => {
         <h1>{' The order is about : '} {product.activity.title} </h1>
         <h3>{product.activity.price + ' €'}</h3>
 
-        <PayementForm></PayementForm>
+        <PayementForm value={id}></PayementForm>
       </div>
     );
 
@@ -38,11 +38,13 @@ export const Payment = (props) => {
   }
 };
 
-const PayementForm = () => {
+const PayementForm = (props) => {
 
   const spanStyle = {
     color: 'red'
   };
+
+  const id  = props.value;
 
   let { showSnackBar } = useContext(SnackbarContext);
   const history = useHistory();
@@ -83,7 +85,7 @@ const PayementForm = () => {
         onSubmit={(values, { setSubmitting }) => {
 
           showSnackBar({ text: "Validation ok" });
-          history.push("/")
+          window.location = `https://dev.payments.hackages.io/?id=${id}&redirectTo=https%3A%2F%2Fdev.community.hackages.io%2Factivity%2Fevent%2F${id}&email=${values.email}`;
 
         }}
 
