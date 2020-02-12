@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Formik } from 'formik';
-import { useHistory } from "react-router-dom";
 import { SnackbarContext } from "../../App";
 import Button from "@material-ui/core/Button";
 import lesson from '../../core/services/lesson.service';
@@ -47,7 +46,6 @@ const PayementForm = (props) => {
   const id  = props.value;
 
   let { showSnackBar } = useContext(SnackbarContext);
-  const history = useHistory();
 
   return (
     <div>
