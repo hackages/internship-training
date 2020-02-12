@@ -13,7 +13,6 @@ function getLessons() {
 }
 
 function getLesson(id) {
-    console.log(id);
     return axios.get(baseURL + "activities/" + id + "?toPopulate[]=subscribers&toPopulate[]=topics&toPopulate[]=location&toPopulate[]=groups&toPopulate[]=owner&toPopulate[]=mentors&toPopulate[]=contacts&toPopulate[]=steps.activities")
         .then(res => {
             return res.data;

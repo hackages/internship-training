@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { SnackbarContext } from "../../App";
 import Button from "@material-ui/core/Button";
 import lesson from '../../core/services/lesson.service';
+import Loading from '../../shared/Loading';
 
 export const Payment = (props) => {
 
@@ -17,14 +18,24 @@ export const Payment = (props) => {
     })
   }, [id])
 
-  return (
-    <div>
-      <h1>{' The order is about : '} {product.title} </h1>
-      <h3>{product.price + ' €'}</h3>
+  if (product && product.activity) {
 
-      <PayementForm></PayementForm>
-    </div>
-  );
+    return (
+      <div>
+        <h1>{' The order is about : '} {product.activity.title} </h1>
+        <h3>{product.activity.price + ' €'}</h3>
+
+        <PayementForm></PayementForm>
+      </div>
+    );
+
+  } else {
+    return (
+      <>
+        <Loading></Loading>
+      </>
+    )
+  }
 };
 
 const PayementForm = () => {
