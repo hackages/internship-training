@@ -42,9 +42,7 @@ export const Details = (props) => {
 
                 <section>
                     <h2> Description </h2>
-                    <p>
-                        <ReactMarkdown source={product.activity.description} />
-                    </p>
+                    <ReactMarkdown source={product.activity.description} />
                 </section>
 
                 <Button variant="outlined" color="primary"  >
