@@ -9,7 +9,7 @@ export const SimpleSnackbar = () => {
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'rigth',
+          horizontal: 'right',
         }}
         open={true}
         message="You are browsing a dev environment."
