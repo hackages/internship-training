@@ -24,9 +24,9 @@ export const Home = (props) => {
             setProducts(data);
         })
     }, []);
-    
+
     if (products && products.activities) {
-        
+
         const listless = products.activities.map(
             (lesson) => <Lesson key={lesson.title} value={lesson} />);
 
@@ -53,17 +53,32 @@ export const Home = (props) => {
 export const Lesson = (props) => {
     const { value } = props;
 
+    const days = value.dates.map(
+        (date, index) => {
+            if (index === 0) {
+                return "From " + date + " ";
+            } else if (index === value.dates.length - 1) {
+                return "to " + date;
+            }
+
+            return "";
+
+        });
+
     return (
         <>
 
             <ListItem>
                 <Card variant="outlined">
                     <CardContent>
-                        <h4>
+                        <h1>
                             {`${value.dates[0]} ${value.title} `}
-                        </h4>
+                        </h1>
+                        <h2>
+                            {days}
+                        </h2>
                         <p>
-                            {`${value.dates.length} days  at ${value.location.country} - ${value.location.locality} price ->  ${value.price}€`}
+                            {`${value.dates.length} days  at ${value.location.country} - ${value.location.locality} price ->  ${(value.price / 100)}€`}
                         </p>
 
                         <p>
