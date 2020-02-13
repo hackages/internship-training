@@ -118,3 +118,8 @@ fabric.properties
 .idea/**/markdown-navigator/
 
 # End of https://www.gitignore.io/api/react,webstorm,visualstudiocode
+
+.env
+.env.production
+.env.development
+backend
