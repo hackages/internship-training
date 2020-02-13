@@ -9,7 +9,6 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import { Payment } from "./pages/payment/Payment";
 
 function App() {
 
@@ -19,7 +18,6 @@ function App() {
                 <Switch>
                     <Route exact path={'/'} component={Home} />
                     <Route path={'/details/:id'} component={Details} />
-                    <Route path={'/payment/:id'} component={Payment} />
                     <Route path={'**'} component={Page404} />
                 </Switch>
             </BrowserRouter>
