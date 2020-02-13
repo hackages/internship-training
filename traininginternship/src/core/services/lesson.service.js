@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const config = {
-    headers: {'crossdomain': 'true'}
+    headers: {'crossdomain': 'true', 'Access-Control-Allow-Origin': '*'}
 };
 
 function getLessons() {

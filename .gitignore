@@ -123,3 +123,5 @@ fabric.properties
 .env.production
 .env.development
 backend
+
+./traininginternship/build
