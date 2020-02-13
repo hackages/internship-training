@@ -11,31 +11,19 @@ import {
 } from "react-router-dom";
 import { Payment } from "./pages/payment/Payment";
 
-export const SnackbarContext = React.createContext({});
-
 function App() {
-    const [snackBarState, setSnackBarState] = React.useState({ "show": false, "text": "" })
-
-    const showSnackBar = data => {
-        setSnackBarState({ ...data, show: true })
-        setTimeout(() => {
-            setSnackBarState({ show: false })
-        }, 2000)
-    }
 
     return (
         <>
-            <SnackbarContext.Provider value={{ snackBarState, showSnackBar }}>
-                <BrowserRouter>
-                    <Switch>
-                        <Route exact path={'/'} component={Home} />
-                        <Route path={'/details/:id'} component={Details} />
-                        <Route path={'/payment/:id'} component={Payment} />
-                        <Route path={'**'} component={Page404} />
-                    </Switch>
-                </BrowserRouter>
-                <SimpleSnackbar></SimpleSnackbar>
-            </SnackbarContext.Provider>
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path={'/'} component={Home} />
+                    <Route path={'/details/:id'} component={Details} />
+                    <Route path={'/payment/:id'} component={Payment} />
+                    <Route path={'**'} component={Page404} />
+                </Switch>
+            </BrowserRouter>
+            <SimpleSnackbar></SimpleSnackbar>
         </>
     );
 }

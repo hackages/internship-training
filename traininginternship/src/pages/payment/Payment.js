@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik } from 'formik';
-import { SnackbarContext } from "../../App";
 import Button from "@material-ui/core/Button";
 import lesson from '../../core/services/lesson.service';
 import Loading from '../../shared/Loading';
@@ -45,8 +44,6 @@ const PayementForm = (props) => {
 
   const id  = props.value;
 
-  let { showSnackBar } = useContext(SnackbarContext);
-
   return (
     <div>
       <Formik
@@ -82,7 +79,6 @@ const PayementForm = (props) => {
 
         onSubmit={(values, { setSubmitting }) => {
 
-          showSnackBar({ text: "Validation ok" });
           window.location = `${process.env.REACT_APP_URL_BASE_PAYMENT}?id=${id}&redirectTo=https%3A%2F%2Fdev.community.hackages.io%2Factivity%2Fevent%2F${id}&email=${values.email}`;
 
         }}
