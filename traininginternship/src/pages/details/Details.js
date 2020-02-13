@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import lesson from '../../core/services/lesson.service';
-import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Loading from '../../shared/Loading';
 
@@ -9,11 +8,15 @@ export const Details = (props) => {
 
     const id = props.match.params.id;
 
+    function redirection() {
+        return window.location =`${process.env.REACT_APP_URL_BASE_PAYMENT}?id=${id}&redirectTo=https%3A%2F%2Fdev.community.hackages.io%2Factivity%2Fevent%2F${id}`
+    }
+
     useEffect(() => {
         lesson.getLesson(id).then(data => {
             setProduct(data);
         })
-    }, [id])
+    }, [id]);
 
     if (product && product.activity) {
 
@@ -33,9 +36,11 @@ export const Details = (props) => {
                     </p>
                 </section>
 
-                <Button variant="outlined" color="primary"  >
-                    <Link to={`/payment/${id}`}> Buy </Link>
+                <Button
+                    onClick={redirection} variant="outlined" color="primary"  >
+                    Buy your training
                 </Button>
+
 
             </div>
         );
@@ -47,3 +52,4 @@ export const Details = (props) => {
         )
     }
 };
+
