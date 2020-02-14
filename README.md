@@ -9,7 +9,7 @@ this project contains 3 pages :   - The list of trainings
                                   - The purchase page ( offical from hackages.io , depends on the environment )
                                   
 # Scope of the project                               
-Currenly working on the migration with Next.js
+Currenly working on the migration with Next.js => the next branch . 
 
 Proudly done by Jawad & Alexis                                
 
