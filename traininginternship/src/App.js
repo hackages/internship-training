@@ -8,11 +8,14 @@ import {
     Switch,
     Route
 } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./core/redux/store";
 
 function App() {
 
     return (
         <>
+            <Provider store={store}>
                 <BrowserRouter>
                     <Switch>
                         <Route exact path={'/'} component={Home} />
@@ -20,6 +23,7 @@ function App() {
                         <Route path={'**'} component={Page404} />
                     </Switch>
                 </BrowserRouter>
+            </Provider>
 
         </>
     );

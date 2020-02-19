@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import lesson from '../../core/services/lesson.service';
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
@@ -8,27 +8,42 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Loading from '../../shared/Loading';
+import fakeData from '../../fakeData.json';
+import { useSelector } from "react-redux";
 
-/**
- *
- * Challenge 1 : faire la requete de manière asynchrone avec un petit serveur de base --> Voir JSON server ( npm )
- */
+
+const getLessons = () => new Promise(res => {
+    setTimeout(() => {
+        res(fakeData)
+    }, 1000)
+});
+
 export const Home = (props) => {
-    console.log(process.env);
-    console.log(process.env.REACT_APP_URL_BASE);
 
-    const [products, setProducts] = useState({});
+    const [isLoading, setIsLoading] = React.useState(true);
+    const dispatch = useDispatch();
+    const products = useSelector(state => state.details.trainings);
 
     useEffect(() => {
-        lesson.getLessons().then(data => {
-            setProducts(data);
+        getLessons().then((lessons) => {
+            setIsLoading(false);
+            dispatch({ type: 'SET_TRAININGS', payload: lessons });
         })
-    }, []);
+    }, [fakeData]);
 
-    if (products && products.activities) {
 
-        const listless = products.activities.map(
-            (lesson) => <Lesson key={lesson.title} value={lesson} />);
+
+
+    const listless = products.map(
+        (lesson) => <Lesson key={lesson.title} value={lesson} />);
+
+    if (isLoading) {
+
+        return (
+            <Loading></Loading>
+        );
+        
+    } else {
 
         return (
             <>
@@ -41,14 +56,9 @@ export const Home = (props) => {
             </>
         );
 
-    } else {
-        return (
-            <>
-                <Loading></Loading>
-            </>
-        )
     }
-};
+
+}
 
 export const Lesson = (props) => {
     const { value } = props;
