@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import lesson from '../../core/services/lesson.service';
+import React, { useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Loading from '../../shared/Loading';
 import ReactMarkdown from 'react-markdown';
-import { detailsReducer } from "../../core/redux/detailsReducer";
 import fakeData from '../../fakeData.json';
+import { Store } from "../../core/redux/store";
 
 const getLessonById = (id) => new Promise(res => {
     setTimeout(() => {
@@ -15,8 +13,9 @@ const getLessonById = (id) => new Promise(res => {
 
 export const Details = (props) => {
 
+    const { state, dispatch } = React.useContext(Store);
+
     const id = Number.parseInt(props.match.params.id);
-    const dispatch = useDispatch();
     let training = undefined;
 
     function redirection() {
@@ -34,7 +33,7 @@ export const Details = (props) => {
 
     }, [id, training]);
 
-    const trainings = useSelector(state => state.details.trainings);
+    const trainings = state.trainings;
     training = trainings.find(t => t.id === id);
 
     if (training) {

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
@@ -9,8 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Loading from '../../shared/Loading';
 import fakeData from '../../fakeData.json';
-import { useSelector } from "react-redux";
-
+import { Store } from "../../core/redux/store";
 
 const getLessons = () => new Promise(res => {
     setTimeout(() => {
@@ -21,20 +19,16 @@ const getLessons = () => new Promise(res => {
 export const Home = (props) => {
 
     const [isLoading, setIsLoading] = React.useState(true);
-    const dispatch = useDispatch();
-    const products = useSelector(state => state.details.trainings);
+    const { state, dispatch } = React.useContext(Store);
 
     useEffect(() => {
         getLessons().then((lessons) => {
             setIsLoading(false);
             dispatch({ type: 'SET_TRAININGS', payload: lessons });
         })
-    }, [fakeData]);
+    }, [dispatch]);
 
-
-
-
-    const listless = products.map(
+    const listless = state.trainings.map(
         (lesson) => <Lesson key={lesson.title} value={lesson} />);
 
     if (isLoading) {
@@ -42,7 +36,7 @@ export const Home = (props) => {
         return (
             <Loading></Loading>
         );
-        
+
     } else {
 
         return (
