@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import Button from "@material-ui/core/Button";
 import Loading from '../../shared/Loading';
 import ReactMarkdown from 'react-markdown';
 import fakeData from '../../fakeData.json';
-import { Store } from "../../core/redux/store";
+import {Store} from "../../core/redux/store";
 
 const getLessonById = (id) => new Promise(res => {
     setTimeout(() => {
@@ -13,7 +13,7 @@ const getLessonById = (id) => new Promise(res => {
 
 export const Details = (props) => {
 
-    const { state, dispatch } = React.useContext(Store);
+    const {state, dispatch} = React.useContext(Store);
 
     const id = Number.parseInt(props.match.params.id);
     let training = undefined;
@@ -26,9 +26,8 @@ export const Details = (props) => {
         getLessonById(id).then(
             (data) => {
                 training = data;
-                dispatch({ type: "ADD_TRAINING", payload: training })
+                dispatch({type: "ADD_TRAINING", payload: training})
             }
-            
         );
 
     }, [id, training]);
@@ -57,16 +56,16 @@ export const Details = (props) => {
                 <p>Date : {training.dates[0]}</p>
                 <p>days : {training.dates.length}</p>
                 <p>{days}</p>
-                <p>Price : {(training.price / 100) + ' €'} / day </p>
+                <p>Price : {(training.price) + ' €'} / day </p>
                 <p>Language : {training.topics[0].name}</p>
 
                 <section>
                     <h2> Description </h2>
-                    <ReactMarkdown source={training.activity.description} />
+                    <ReactMarkdown source={training.activity.description}/>
                 </section>
 
                 <Button
-                    onClick={redirection} variant="outlined" color="primary"  >
+                    onClick={redirection} variant="outlined" color="primary">
                     Buy your training
                 </Button>
 

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, {useEffect} from "react";
+import {Link} from "react-router-dom";
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import Card from '@material-ui/core/Card';
@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Loading from '../../shared/Loading';
 import fakeData from '../../fakeData.json';
-import { Store } from "../../core/redux/store";
+import {Store} from "../../core/redux/store";
 
 const getLessons = () => new Promise(res => {
     setTimeout(() => {
@@ -19,17 +19,17 @@ const getLessons = () => new Promise(res => {
 export const Home = (props) => {
 
     const [isLoading, setIsLoading] = React.useState(true);
-    const { state, dispatch } = React.useContext(Store);
+    const {state, dispatch} = React.useContext(Store);
 
     useEffect(() => {
         getLessons().then((lessons) => {
             setIsLoading(false);
-            dispatch({ type: 'SET_TRAININGS', payload: lessons });
+            dispatch({type: 'SET_TRAININGS', payload: lessons});
         })
     }, [dispatch]);
 
     const listless = state.trainings.map(
-        (lesson) => <Lesson key={lesson.title} value={lesson} />);
+        (lesson) => <Lesson key={lesson.title} value={lesson}/>);
 
     if (isLoading) {
 
@@ -52,10 +52,10 @@ export const Home = (props) => {
 
     }
 
-}
+};
 
 export const Lesson = (props) => {
-    const { value } = props;
+    const {value} = props;
 
     const days = value.dates.map(
         (date, index) => {
@@ -82,7 +82,7 @@ export const Lesson = (props) => {
                             {days}
                         </h2>
                         <p>
-                            {`${value.dates.length} days  at ${value.location.country} - ${value.location.locality} price ->  ${(value.price / 100)}€`}
+                            {`${value.dates.length} days  at ${value.location.country} - ${value.location.locality} price ->  ${(value.price)}€`}
                         </p>
 
                         <p>
