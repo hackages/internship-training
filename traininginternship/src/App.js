@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import { Home } from "./pages/home/Home";
-import { Details } from "./pages/details/Details";
+import { Home } from "./pages/Home";
+import { Details } from "./pages/Details";
 import { Page404 } from "./pages/page404";
 import {
     BrowserRouter,

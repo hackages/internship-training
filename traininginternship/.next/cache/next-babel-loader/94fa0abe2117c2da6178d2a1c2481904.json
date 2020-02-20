@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from \"react\";\nexport const Page404 = props => {\n  return __jsx(\"div\", null, __jsx(\"h1\", null, \"404\"), __jsx(\"p\", null, \"Page not found\"));\n};","map":null,"metadata":{},"sourceType":"module"}
