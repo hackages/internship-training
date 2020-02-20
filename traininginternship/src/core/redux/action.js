@@ -1,0 +1,2 @@
+export const SET_TRAININGS = 'SET_TRAININGS';
+export const ADD_TRAINING = 'ADD_TRAINING';

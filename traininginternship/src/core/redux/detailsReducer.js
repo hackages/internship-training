@@ -1,18 +1,31 @@
+import { SET_TRAININGS, ADD_TRAINING } from "./action";
+
 const intitialState = {
     trainings: []
 };
 
-export const detailsReducer = (state = intitialState, action) => {
-    if (action.type === 'SET_TRAININGS') {
-        return{
+const reducer = {
+    [SET_TRAININGS](state, action) {
+        return {
+            ...state,
             trainings: action.payload
         };
-        
-    } else if (action.type === 'ADD_TRAINING') {
+    },
+
+    [ADD_TRAINING](state, action) {
         return{
+            ...state,
             trainings: [...state.trainings, action.payload]
         };
     }
+}
 
-    return state;
+
+
+
+
+export const detailsReducer = (state = intitialState, action) => {
+    const handler =  reducer[action.type]
+   
+    return handler? handler(state, action): state;
 };

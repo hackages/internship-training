@@ -6,6 +6,7 @@ import Loading from '../../shared/Loading';
 import ReactMarkdown from 'react-markdown';
 import { detailsReducer } from "../../core/redux/detailsReducer";
 import fakeData from '../../fakeData.json';
+import { ADD_TRAINING } from "../../core/redux/action";
 
 const getLessonById = (id) => new Promise(res => {
     setTimeout(() => {
@@ -15,7 +16,7 @@ const getLessonById = (id) => new Promise(res => {
 
 export const Details = (props) => {
 
-    const id = Number.parseInt(props.match.params.id);
+    const id = Number(props.match.params.id);
     const dispatch = useDispatch();
     let training = undefined;
 
@@ -27,7 +28,7 @@ export const Details = (props) => {
         getLessonById(id).then(
             (data) => {
                 training = data;
-                dispatch({ type: "ADD_TRAINING", payload: training })
+                dispatch({ type: ADD_TRAINING, payload: training })
             }
             
         );
