@@ -7,14 +7,14 @@ const initialState = {
 };
 
 export const detailsReducer = (state = initialState, action) => {
+
     if (action.type === 'SET_TRAININGS') {
         return {
             trainings: action.payload
         };
 
     } else if (action.type === 'ADD_TRAINING') {
-
-        if (state.trainings.find(e => e.id === action.payload.id)) { // pour les doublons ( children HOME -> DETAILS -> HOME
+        if (state.trainings.find(e => e.id == action.payload.id)) { // pour les doublons ( children HOME -> DETAILS -> HOME
             return {
                 trainings: state.trainings
             };

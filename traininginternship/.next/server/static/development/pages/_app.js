@@ -120,7 +120,7 @@ const detailsReducer = (state = initialState, action) => {
       trainings: action.payload
     };
   } else if (action.type === 'ADD_TRAINING') {
-    if (state.trainings.find(e => e.id === action.payload.id)) {
+    if (state.trainings.find(e => e.id == action.payload.id)) {
       // pour les doublons ( children HOME -> DETAILS -> HOME
       return {
         trainings: state.trainings

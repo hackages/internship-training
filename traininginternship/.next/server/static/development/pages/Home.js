@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2078,7 +2078,7 @@ const detailsReducer = (state = initialState, action) => {
       trainings: action.payload
     };
   } else if (action.type === 'ADD_TRAINING') {
-    if (state.trainings.find(e => e.id === action.payload.id)) {
+    if (state.trainings.find(e => e.id == action.payload.id)) {
       // pour les doublons ( children HOME -> DETAILS -> HOME
       return {
         trainings: state.trainings
@@ -2346,7 +2346,7 @@ function Loading() {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!*********************************!*\
   !*** multi ./src/pages/Home.js ***!
   \*********************************/

@@ -21119,7 +21119,7 @@ const detailsReducer = (state = initialState, action) => {
       trainings: action.payload
     };
   } else if (action.type === 'ADD_TRAINING') {
-    if (state.trainings.find(e => e.id === action.payload.id)) {
+    if (state.trainings.find(e => e.id == action.payload.id)) {
       // pour les doublons ( children HOME -> DETAILS -> HOME
       return {
         trainings: state.trainings
@@ -21383,7 +21383,7 @@ function Loading() {
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /*!******************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2FHome&absolutePagePath=%2FUsers%2Fjawad%2FDesktop%2Ftrainings%2Finternship-training%2Ftraininginternship%2Fsrc%2Fpages%2FHome.js ***!
   \******************************************************************************************************************************************************************************/
@@ -21406,5 +21406,5 @@ module.exports = dll_ef0ff7c60362f24a921f;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[3,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=Home.js.map
